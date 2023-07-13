@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Post } from '@nestjs/common';
 import { MovieService } from './shared/service/movie.service';
 import { Movie } from './shared/movie/movie';
 
@@ -8,13 +8,13 @@ export class MoviesController {
     constructor(private movieService: MovieService){}
 
     @Get()
-    async getAll(): Promise<Movie[]>{
+    async getAll(){
         return this.movieService.getAll();
     }
 
-    @Post()
-    async create(@Body() movie: Movie): Promise<Movie>{
-        return this.movieService.create(movie);
+    @Post('/addlikes')
+    async addLikes(@Body() movie: Movie): Promise<Movie>{
+        return this.movieService.addLikes(movie);
     }
     
 }
